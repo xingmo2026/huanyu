@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0d0b1a">
-<title>幻域官网 | 全新重构版</title>
+<title>幻域官网 | 纯净静态版</title>
 <style>
 /* ===== 基础变量与重置 ===== */
 :root {
@@ -18,7 +18,15 @@
   --accent: #7dd3fc;
   --success: #4ade80;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  -webkit-tap-highlight-color: transparent; 
+  /* 彻底关闭所有动画和过渡 */
+  animation: none !important;
+  transition: none !important;
+}
 body {
   font-family: system-ui, -apple-system, "Microsoft YaHei", sans-serif;
   background-color: var(--bg);
@@ -47,7 +55,7 @@ a { text-decoration: none; color: inherit; }
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 .nav-links { display: flex; gap: 24px; }
-.nav-links a { font-size: 14px; color: var(--text-muted); transition: 0.2s; }
+.nav-links a { font-size: 14px; color: var(--text-muted); }
 .nav-links a:hover { color: var(--primary); }
 
 /* ===== 核心布局 ===== */
@@ -79,19 +87,19 @@ a { text-decoration: none; color: inherit; }
 .ip-grid { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .ip-card {
   padding: 12px 20px; border-radius: 12px; background: var(--card-bg);
-  border: 1px solid var(--border); font-size: 14px; transition: 0.3s;
+  border: 1px solid var(--border); font-size: 14px; 
 }
-.ip-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.ip-card:hover { border-color: var(--primary); }
 .ip-card b { color: var(--primary); font-family: monospace; font-size: 15px; }
 
 /* ===== 卡片系统 ===== */
 .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .card {
   background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: 16px; padding: 24px; transition: 0.3s;
+  border-radius: 16px; padding: 24px; 
 }
 .card:hover {
-  transform: translateY(-4px); border-color: rgba(255, 122, 198, 0.4);
+  border-color: rgba(255, 122, 198, 0.4);
   box-shadow: 0 10px 30px rgba(255, 122, 198, 0.08);
 }
 .card h4 { font-size: 17px; color: var(--primary); margin-bottom: 12px; }
@@ -114,23 +122,20 @@ a { text-decoration: none; color: inherit; }
   display: inline-flex; align-items: center; justify-content: center;
   padding: 12px 28px; border-radius: 99px; font-weight: bold; font-size: 14px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #fff; border: none; cursor: pointer; transition: 0.3s;
+  color: #fff; border: none; cursor: pointer; 
   box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
 }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(167, 139, 250, 0.5); }
-.btn:active { transform: scale(0.96); }
+.btn:hover { 
+  box-shadow: 0 6px 20px rgba(167, 139, 250, 0.5); 
+}
 
 /* ===== 响应式 ===== */
 @media (max-width: 768px) {
-  .nav-links { display: none; } /* 手机端隐藏导航，建议后续加汉堡菜单 */
+  .nav-links { display: none; }
   .hero h1 { font-size: 32px; }
   .section { padding: 40px 0; }
   .cards-grid { grid-template-columns: 1fr; }
 }
-
-/* ===== 动画优化 ===== */
-.fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
-@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
@@ -149,10 +154,10 @@ a { text-decoration: none; color: inherit; }
 
 <!-- 首屏 -->
 <header class="hero">
-  <div class="badge fade-in">● 服务器实时运行中</div>
-  <h1 class="fade-in" style="animation-delay: 0.1s">欢迎来到幻域</h1>
-  <p class="fade-in" style="animation-delay: 0.2s">Java & 基岩版 互通 · 离线可进 · 畅玩无阻</p>
-  <div class="ip-grid fade-in" style="animation-delay: 0.3s">
+  <div class="badge">● 服务器实时运行中</div>
+  <h1>欢迎来到幻域</h1>
+  <p>Java & 基岩版 互通 · 离线可进 · 畅玩无阻</p>
+  <div class="ip-grid">
     <div class="ip-card">☕ Java版 IP: <b>huanyu.fucku.top</b></div>
     <div class="ip-card">🪨 基岩版端口: <b>36784</b></div>
   </div>
@@ -162,7 +167,7 @@ a { text-decoration: none; color: inherit; }
   <!-- 状态区 -->
   <section class="section" id="status">
     <h2 class="section-title">📊 实时状态</h2>
-    <div class="status-card fade-in">
+    <div class="status-card">
       <div>
         <p style="color: var(--text-muted); font-size: 14px;">当前在线人数</p>
         <div class="status-num" id="mc-players">--</div>
@@ -213,8 +218,8 @@ a { text-decoration: none; color: inherit; }
 </main>
 
 <footer style="text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--border); margin-top: 40px;">
-  幻域官网 · 幻域团队编写 · 请勿二次转发<br>
-  <span style="color: var(--primary);">网页开发者：徐浩宇</span>
+  nb官网 · nb团队编写 · 请勿二次转发<br>
+  <span style="color: var(--primary);">网页开发者：000</span>
 </footer>
 
 <!-- 后端交互脚本 -->
@@ -244,22 +249,7 @@ a { text-decoration: none; color: inherit; }
     playersEl.textContent = "--";
   }
 })();
-
-// ===== 简单的滚动动画接管 =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.card, .section-title').forEach(el => {
-  el.style.opacity = '0'; // 初始隐藏，等待滚动进入
-  observer.observe(el);
-});
 </script>
 
 </body>
-        </html>
+                                                                                    </html>
